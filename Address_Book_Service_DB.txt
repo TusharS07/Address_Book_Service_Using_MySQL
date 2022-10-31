@@ -223,6 +223,23 @@ mysql> SELECT state, COUNT(*) FROM address_book GROUP BY state;
 
 mysql>
 
+==========================================================================
+#uc8-Ability to retrieve entries sorted alphabetically
+#by Person’s name for a given city
+==========================================================================
+
+mysql> SELECT first_name, city from address_book ORDER BY first_name;
++------------+-------------+
+| first_name | city        |
++------------+-------------+
+| Aniket     | Navi Mumbai |
+| Sai        | Panaji      |
+| Tushar     | Mumbai      |
++------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql>
+
 
 
 
