@@ -62,3 +62,40 @@ mysql> SELECT DATABASE();
 
 mysql>
 
+==========================================================================
+#uc2-Ability to create a Address Book Table with first and last names,
+#address, city, state, zip, phone number and email as its attributes
+==========================================================================
+
+mysql> CREATE TABLE address_book
+    -> (
+    -> first_name VARCHAR(25) NOT NULL,
+    -> last_name VARCHAR(25) NOT NULL,
+    -> address VARCHAR(80) NOT NULL,
+    -> city VARCHAR(15) NOT NULL,
+    -> state VARCHAR(15) NOT NULL,
+    -> zip INT NOT NULL,
+    -> phone_number INT NOT NULL,
+    -> emai_id VARCHAR(30) NOT NULL,
+    -> PRIMARY KEY (first_name)
+    -> );
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> DESCRIBE address_book;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| first_name   | varchar(25) | NO   | PRI | NULL    |       |
+| last_name    | varchar(25) | NO   |     | NULL    |       |
+| address      | varchar(80) | NO   |     | NULL    |       |
+| city         | varchar(15) | NO   |     | NULL    |       |
+| state        | varchar(15) | NO   |     | NULL    |       |
+| zip          | int         | NO   |     | NULL    |       |
+| phone_number | int         | NO   |     | NULL    |       |
+| emai_id      | varchar(30) | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql>
+
+
