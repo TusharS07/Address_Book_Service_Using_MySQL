@@ -99,3 +99,36 @@ mysql> DESCRIBE address_book;
 mysql>
 
 
+==========================================================================
+#uc3-Ability to insert new Contacts to Address Book
+==========================================================================
+
+mysql> INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone_number, email_id) VALUES
+    -> ( 'Tushar', 'Salunkhe', 'Bhandup(W)', 'Mumbai', 'Maharashtra', '400078', '1234567890', 'tushar@gmail.com' ),
+    -> ( 'Sai', 'Naik', 'Panjim', 'Panaji', 'Goa', '110068', '1237894562', 'abc@gmail.com' ),
+    -> ( 'Nitin', 'Naragude', 'Pimpari', 'Pune', 'Maharshtra', '411002', '7412589630', 'nitin@gmail.co' );
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone_number, email_id) VALUES
+    -> ( 'Aniket', 'Gavas', 'Ghansoli', 'Navi Mumbai', 'Maharashtra', '400701', '7521561230', 'aniket@gmail.com' );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from address_book;
++------------+-----------+------------+-------------+-------------+--------+--------------+------------------+
+| first_name | last_name | address    | city        | state       | zip    | phone_number | email_id         |
++------------+-----------+------------+-------------+-------------+--------+--------------+------------------+
+| Aniket     | Gavas     | Ghansoli   | Navi Mumbai | Maharashtra | 400701 | 7521561230   | aniket@gmail.com |
+| Nitin      | Naragude  | Pimpari    | Pune        | Maharshtra  | 411002 | 7412589630   | nitin@gmail.co   |
+| Sai        | Naik      | Panjim     | Panaji      | Goa         | 110068 | 1237894562   | abc@gmail.com    |
+| Tushar     | Salunkhe  | Bhandup(W) | Mumbai      | Maharashtra | 400078 | 1234567890   | tushar@gmail.com |
++------------+-----------+------------+-------------+-------------+--------+--------------+------------------+
+4 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
