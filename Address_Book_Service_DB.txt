@@ -240,6 +240,102 @@ mysql> SELECT first_name, city from address_book ORDER BY first_name;
 
 mysql>
 
+==========================================================================
+#uc9-Ability to identify each Address Book with name and Type
+==========================================================================
+
+mysql> select * from address_book;
++------------+-----------+------------+-------------+-------------+--------+--------------+------------------+
+| first_name | last_name | address    | city        | state       | zip    | phone_number | email_id         |
++------------+-----------+------------+-------------+-------------+--------+--------------+------------------+
+| Aniket     | Gavas     | Ghansoli   | Navi Mumbai | Maharashtra | 400701 | 7304183201   | aniket@gmail.com |
+| Sai        | Patil     | Panjim     | Panaji      | Goa         | 110068 | 1237894562   | abc@gmail.com    |
+| Tushar     | Salunkhe  | Bhandup(W) | Mumbai      | Maharashtra | 400078 | 1234567890   | tushar@gmail.com |
++------------+-----------+------------+-------------+-------------+--------+--------------+------------------+
+3 rows in set (0.01 sec)
+
+mysql> INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone_number, email_id) VALUES
+    -> ( 'Jyoti', 'Salunkhe', 'Bhandup', 'Mumbai', 'Maharashtra', '400078', '1256497890', 'Jyoti@gmail.com' ),
+    -> ( 'Yash', 'Bhosale', 'Khavaspur', 'Solapur', 'Maharashtra', '400706', '1122336654', 'Yash@gmail.com' ),
+    -> ( 'Akash', 'Patil', 'Wadi', 'Kolhapur', 'Maharashtra', '400766', '1232456578', 'Patil@gmail.com' );
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from address_book;
++------------+-----------+------------+-------------+-------------+--------+--------------+------------------+
+| first_name | last_name | address    | city        | state       | zip    | phone_number | email_id         |
++------------+-----------+------------+-------------+-------------+--------+--------------+------------------+
+| Akash      | Patil     | Wadi       | Kolhapur    | Maharashtra | 400766 | 1232456578   | Patil@gmail.com  |
+| Aniket     | Gavas     | Ghansoli   | Navi Mumbai | Maharashtra | 400701 | 7304183201   | aniket@gmail.com |
+| Jyoti      | Salunkhe  | Bhandup    | Mumbai      | Maharashtra | 400078 | 1256497890   | Jyoti@gmail.com  |
+| Sai        | Patil     | Panjim     | Panaji      | Goa         | 110068 | 1237894562   | abc@gmail.com    |
+| Tushar     | Salunkhe  | Bhandup(W) | Mumbai      | Maharashtra | 400078 | 1234567890   | tushar@gmail.com |
+| Yash       | Bhosale   | Khavaspur  | Solapur     | Maharashtra | 400706 | 1122336654   | Yash@gmail.com   |
++------------+-----------+------------+-------------+-------------+--------+--------------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE address_book ADD type VARCHAR(15) AFTER last_name;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from address_book;
++------------+-----------+------+------------+-------------+-------------+--------+--------------+------------------+
+| first_name | last_name | type | address    | city        | state       | zip    | phone_number | email_id         |
++------------+-----------+------+------------+-------------+-------------+--------+--------------+------------------+
+| Akash      | Patil     | NULL | Wadi       | Kolhapur    | Maharashtra | 400766 | 1232456578   | Patil@gmail.com  |
+| Aniket     | Gavas     | NULL | Ghansoli   | Navi Mumbai | Maharashtra | 400701 | 7304183201   | aniket@gmail.com |
+| Jyoti      | Salunkhe  | NULL | Bhandup    | Mumbai      | Maharashtra | 400078 | 1256497890   | Jyoti@gmail.com  |
+| Sai        | Patil     | NULL | Panjim     | Panaji      | Goa         | 110068 | 1237894562   | abc@gmail.com    |
+| Tushar     | Salunkhe  | NULL | Bhandup(W) | Mumbai      | Maharashtra | 400078 | 1234567890   | tushar@gmail.com |
+| Yash       | Bhosale   | NULL | Khavaspur  | Solapur     | Maharashtra | 400706 | 1122336654   | Yash@gmail.com   |
++------------+-----------+------+------------+-------------+-------------+--------+--------------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE address_book SET type = 'Family' WHERE first_name = 'Tushar';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = 'Family' WHERE first_name = 'Jyoti';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = 'Family' WHERE first_name = 'Yash';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = 'Friend' WHERE first_name = 'Sai';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = 'Friend' WHERE first_name = 'Aniket';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = 'Profession' WHERE first_name = 'Akash';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from address_book;
++------------+-----------+------------+------------+-------------+-------------+--------+--------------+------------------+
+| first_name | last_name | type       | address    | city        | state       | zip    | phone_number | email_id         |
++------------+-----------+------------+------------+-------------+-------------+--------+--------------+------------------+
+| Akash      | Patil     | Profession | Wadi       | Kolhapur    | Maharashtra | 400766 | 1232456578   | Patil@gmail.com  |
+| Aniket     | Gavas     | Friend     | Ghansoli   | Navi Mumbai | Maharashtra | 400701 | 7304183201   | aniket@gmail.com |
+| Jyoti      | Salunkhe  | Family     | Bhandup    | Mumbai      | Maharashtra | 400078 | 1256497890   | Jyoti@gmail.com  |
+| Sai        | Patil     | Friend     | Panjim     | Panaji      | Goa         | 110068 | 1237894562   | abc@gmail.com    |
+| Tushar     | Salunkhe  | Family     | Bhandup(W) | Mumbai      | Maharashtra | 400078 | 1234567890   | tushar@gmail.com |
+| Yash       | Bhosale   | Family     | Khavaspur  | Solapur     | Maharashtra | 400706 | 1122336654   | Yash@gmail.com   |
++------------+-----------+------------+------------+-------------+-------------+--------+--------------+------------------+
+6 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
 
 
 
